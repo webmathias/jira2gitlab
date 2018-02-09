@@ -1,0 +1,40 @@
+<mat-expansion-panel>
+  <mat-expansion-panel-header>Issues Jira
+  </mat-expansion-panel-header>
+  <mat-progress-bar *ngIf="loading" mode="indeterminate">Loading...</mat-progress-bar>
+  <mat-table #table [dataSource]="dataSource">
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="title">
+      <mat-header-cell *matHeaderCellDef>Titulo.</mat-header-cell>
+      <mat-cell *matCellDef="let element"><b>{{element.key}}</b> {{element.name}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="state">
+      <mat-header-cell *matHeaderCellDef> State</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.status}}</mat-cell>
+    </ng-container>
+
+
+    <ng-container matColumnDef="sync">
+      <mat-header-cell *matHeaderCellDef>Sync</mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <button (click)="openDialogAndroid(element)" mat-button *ngIf="element.android && !element.syncAndroid">
+          <mat-icon svgIcon="android"></mat-icon>
+          Android
+        </button>
+        <a *ngIf="element.android && element.syncAndroid" href="{{element.syncAndroid.web_url}}">Android
+          #{{element.syncAndroid.iid}}</a>
+        <button (click)="openDialogIOS(element)" mat-button *ngIf="element.ios && !element.syncIOS">
+          <mat-icon svgIcon="apple"></mat-icon>
+          IOs
+        </button>
+        <a *ngIf="element.ios && element.syncIOS" href="{{element.syncIOS.web_url}}">IOS #{{element.syncIOS.iid}}</a>
+      </mat-cell>
+
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</mat-expansion-panel>

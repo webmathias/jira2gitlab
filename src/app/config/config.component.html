@@ -1,0 +1,33 @@
+<h2 mat-dialog-title>Config</h2>
+<div mat-dialog-content>
+  <div>
+    <div>
+    <mat-form-field class="full">
+      <input matInput placeholder="Jira User" [(ngModel)]="jiraUser">
+    </mat-form-field>
+    </div>
+    <div>
+    <mat-form-field class="full">
+      <input matInput placeholder="Jira Password" type="password" [(ngModel)]="jiraPassword">
+    </mat-form-field>
+    </div>
+    <div>
+    <mat-form-field class="full">
+      <input matInput placeholder="GitToken" [(ngModel)]="gitToken">
+    </mat-form-field>
+    </div>
+
+  </div>
+</div>
+<div mat-dialog-actions>
+
+  <button mat-button (click)="confirm(jiraUser, jiraPassword,gitToken)" color="primary">
+    Save
+  </button>
+  <button mat-button (click)="dialogRef.close()">
+    Cancel
+  </button>
+</div>
+
+
+

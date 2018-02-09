@@ -1,0 +1,27 @@
+<h2 mat-dialog-title>New Issue</h2>
+<div mat-dialog-content>
+  <div>
+    <div>Project: {{projectID}}</div>
+    <div>Labels: {{label}}</div>
+    <div>{{milestone.id}} - {{milestone.title}}</div>
+    <mat-form-field class="full">
+      <input matInput placeholder="Title" [(ngModel)]="title">
+    </mat-form-field>
+
+    <mat-form-field class="full">
+      <textarea rows="10" matInput placeholder="Description" [(ngModel)]="description"></textarea>
+    </mat-form-field>
+
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="confirm()" color="primary">
+    Save
+  </button>
+  <button mat-button (click)="confirmJira()" *ngIf="gitIssue" color="primary">
+    Save Jira
+  </button>
+  <button mat-button (click)="dialogRef.close()">
+    Cancel
+  </button>
+</div>

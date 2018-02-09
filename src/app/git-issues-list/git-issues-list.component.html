@@ -1,0 +1,28 @@
+<mat-expansion-panel>
+  <mat-expansion-panel-header>Issues GitLab
+  </mat-expansion-panel-header>
+  <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+  <mat-table #table [dataSource]="dataSource">
+    <!-- Position Column -->
+    <ng-container matColumnDef="title">
+      <mat-header-cell *matHeaderCellDef> Titulo.</mat-header-cell>
+      <mat-cell *matCellDef="let element">#{{element.iid}} - {{element.title}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="state">
+      <mat-header-cell *matHeaderCellDef> State</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.state}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="labels">
+      <mat-header-cell *matHeaderCellDef> Labels</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.labels}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="web_url">
+      <mat-header-cell *matHeaderCellDef> Link</mat-header-cell>
+      <mat-cell *matCellDef="let element"><a href="{{element.web_url}}">#{{element.iid}}</a></mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</mat-expansion-panel>
